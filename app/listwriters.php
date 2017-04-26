@@ -8,7 +8,7 @@
     <body>
         <?php
         require_once "../models/Writer.php";
-        $db = new Database;
+        $db = new DatabasePsql;
         $user = new Writer($db);
         $users = $user->get();
         ?>
@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Lista de escritores</h2>
                 <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
-                    <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>/app/add.php">Add user</a>
+                    <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>/app/addwriter.php">Add user</a>
                 </div>
                 <?php
                 if( ! empty( $users ) )

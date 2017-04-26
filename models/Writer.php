@@ -1,5 +1,5 @@
 <?php
-require_once("../database/Database.php");
+require_once("../database/DatabasePsql.php");
 require_once("../interfaces/IUser.php");
 
 class Writer implements IUser {
@@ -11,7 +11,7 @@ class Writer implements IUser {
     private $edad;
     private $nacionalidad;
 
-	public function __construct(Database $db){
+	public function __construct(DatabasePsql $db){
 		$this->con = new $db;
 	}
 
@@ -42,12 +42,12 @@ class Writer implements IUser {
 	//insertamos usuarios en una tabla con postgreSql
 	public function save() {
 		try{
-			$query = $this->con->prepare('INSERT INTO escritor (nombre, apellidos,email,edad,nacionalidad) values (?,?,?,?,?)');
+			$query = $this->con->prepare('INSERT INTO escritor (nombre,apellidos,email,edad,nacionalidad) values (?,?,?,?,?)');
             $query->bindParam(1, $this->nombre, PDO::PARAM_STR);
 			$query->bindParam(2, $this->apellidos, PDO::PARAM_STR);
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
             $query->bindParam(4, $this->edad, PDO::PARAM_INT);
-            $query->bindParam(4, $this->nacionalidad, PDO::PARAM_STR);
+            $query->bindParam(5, $this->nacionalidad, PDO::PARAM_STR);
 			$query->execute();
 			$this->con->close();
 		}
@@ -109,7 +109,7 @@ class Writer implements IUser {
     }
 
     public static function baseurl() {
-         return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/Mexcritores/";
+         return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/Mexcritores/Mexcritores/";
     }
 
     public function checkUser($user) {
