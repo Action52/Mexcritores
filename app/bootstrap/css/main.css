@@ -1,8 +1,8 @@
 .main-page{
-  background-image: url(../../img/font.jpeg);
+  background-image: url(../../img/fontNuevo.jpg);
 }
 
-.header{
+.header-mex{
   background-color: #ffeaad;
 
 }
@@ -14,14 +14,18 @@
 }
 
 .btn-mex{
-  background-color: #848484;
+  background-color: #ffd366;
   border-color: #000000;
+  color: #ffffff;
+}
+
+.btn-mex:hover{
+  background-color: #ffc63a;
 }
 
 .txt-field-mex{
   border-radius: 10px;
   background-color: #fff9ea;
-  
 }
 
 .black{
@@ -38,4 +42,16 @@
   background-color: rgba(105,100,100,0.8);
   color: #000000;
 
+}
+
+.register{
+    align-self: center;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }

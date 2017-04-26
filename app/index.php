@@ -24,7 +24,7 @@
   <body class="main-page">
 
     <!--Header-->
-    <div class ="panel-header header row">
+    <div class ="panel-header header-mex row">
       <div class ="col-md-3">
         <center><img src="img/logo.png" class="logo-header"></center>
       </div>
@@ -51,6 +51,7 @@
     <!--End of Header-->
 
     <!--Content-->
+    <div class ="container">
       <div class ="row">
         <div class ="col-md-6">
         </div>
@@ -60,7 +61,7 @@
             Sign up to our awesome community and rock with new publications everyday!
           </h3>
           <br>
-          <h4><form action = "" method = "POST" class ="form-group">
+          <h4><form action = "register.php" method = "POST" class ="form-group">
             Sign up as:
             <select class ="txt-field-mex" name ="entity">
               <option value="reader">Reader</option>
@@ -74,9 +75,15 @@
                   }
                 ?>
               </select>
+            <input type="submit" name="submit" value="Register" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
             <br>
             <br>
             Username: <input type="text" name="username" value="" id="username" placeholder="Username" class ="form-control txt-field-mex">
+            <br>
+            Password:
+            <br>
+            <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
+            <br>
             <br>
             Name: <input type="text" name="name" value="" id="name" placeholder="Name" class ="form-control txt-field-mex">
             <br>
@@ -89,6 +96,7 @@
           </form></h4>
         </div>
       </div>
+    </div>
     <!--End of content-->
 
     <!--Footer-->
@@ -101,5 +109,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <?php
+      include("../database/DatabaseMysql.php");
+      include("../database/DatabasePsql.php");
+      $dbM = new DatabaseMysql;
+      $dbP = new DatabasePsql;
+
+      $dbM->connect();
+    ?>
   </body>
 </html>
