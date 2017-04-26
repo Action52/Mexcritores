@@ -22,7 +22,80 @@
     <![endif]-->
   </head>
   <body class="main-page">
-    <h1>Hello, world!</h1>
+
+    <!--Header-->
+    <div class ="panel-header header row">
+      <div class ="col-md-3">
+        <center><img src="img/logo.png" class="logo-header"></center>
+      </div>
+      <form action = "" method = "POST">
+        <div class ="col-md-2">
+          <h5>Username: </h5> <input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex">
+        </div>
+        <div class ="col-md-2">
+          <h5>Password: </h5> <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
+        </div>
+        <div class ="col-md-2">
+          <br>
+          <center>
+          <div class ="row">
+          <input type="submit" name="submit" value="Log in" id="password" placeholder="Password" class ="btn btn-primary btn-sm btn-mex">
+          </div>
+          <div class ="row">
+
+          </div>
+          </center>
+        </div>
+      </form>
+    </div>
+    <!--End of Header-->
+
+    <!--Content-->
+      <div class ="row">
+        <div class ="col-md-6">
+        </div>
+        <div class ="col-md-6 register-space">
+          <h1>Register<h1>
+          <h3>
+            Sign up to our awesome community and rock with new publications everyday!
+          </h3>
+          <br>
+          <h4><form action = "" method = "POST" class ="form-group">
+            Sign up as:
+            <select class ="txt-field-mex" name ="entity">
+              <option value="reader">Reader</option>
+              <option value="writer">Writer</option>
+            </select>
+            Age:
+              <select class ="txt-field-mex" name ="age">
+                <?php
+                  for($i = 18; $i < 80; $i++){
+                    echo '<option value = '.$i.'>'.$i.'</option>';
+                  }
+                ?>
+              </select>
+            <br>
+            <br>
+            Username: <input type="text" name="username" value="" id="username" placeholder="Username" class ="form-control txt-field-mex">
+            <br>
+            Name: <input type="text" name="name" value="" id="name" placeholder="Name" class ="form-control txt-field-mex">
+            <br>
+            Last name: <input type="text" name="lastname" value="" id="lastname" placeholder="Last name" class ="form-control txt-field-mex">
+            <br>
+            Mail: <input type="text" name="email" value="" id="email" placeholder="Mail" class ="form-control txt-field-mex">
+            <br>
+            Nationality: <input type="text" name="nation" value="" id="nation" placeholder="Nationality" class ="form-control txt-field-mex">
+            <br>
+          </form></h4>
+        </div>
+      </div>
+    <!--End of content-->
+
+    <!--Footer-->
+    <div class="panel-footer footer-mex">
+      <center>&#9400 Mexcritores 2017. All rights reserved.</center>
+    </div>
+    <!--End of footer-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

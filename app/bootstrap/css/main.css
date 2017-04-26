@@ -1,3 +1,41 @@
 .main-page{
   background-image: url(../../img/font.jpeg);
 }
+
+.header{
+  background-color: #ffeaad;
+
+}
+
+.logo-header{
+  height: 50%;
+  width: 50%;
+  align-self: center;
+}
+
+.btn-mex{
+  background-color: #848484;
+  border-color: #000000;
+}
+
+.txt-field-mex{
+  border-radius: 10px;
+  background-color: #fff9ea;
+  
+}
+
+.black{
+  color: #000000;
+}
+
+.footer-mex{
+  position:fixed;
+  bottom:0;
+  align-self: center;
+}
+
+.register-space{
+  background-color: rgba(105,100,100,0.8);
+  color: #000000;
+
+}
