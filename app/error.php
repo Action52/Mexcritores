@@ -134,7 +134,7 @@
           <div class ="col-md-6 col-md-offset-6 register-space">
             <h1>Token Registration</h1>
             <h3>You're just a step away from being a member!
-            <br>Please enter the token we have sent to your mail.</h3>
+            <br>An error occurred</h3>
             <form action = "confirm.php" method = "POST" class ="form-group">
               <input type="text" name="token" value="" id="token" placeholder="Token" class ="txt-field txt-field-mex col-xs-4 register">
               &#09;<input type="submit" name="submit" value="Send token" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
