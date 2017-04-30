@@ -1,3 +1,13 @@
+<?php
+include('login.php'); // Includes Login Script
+
+if(isset($_SESSION['login_user'])){
+header("location: profile.php");
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,7 +38,7 @@
       <div class ="col-md-3">
         <center><img src="img/logo.png" class="logo-header"></center>
       </div>
-      <form action = "" method = "POST">
+      <form action = "login.php" method = "POST">
         <div class ="col-md-2">
           <h5>Username: </h5> <input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex">
         </div>
