@@ -20,8 +20,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
   </head>
   <body class="main-page">
 
@@ -31,29 +29,26 @@
         <center><a href ="index.php"><img src="img/logo.png" class="logo-header"></a></center>
       </div>
       <div class ="col-md-2">
-        <center>
-          <h4><a href ="why.php">Why Mexcritores?</a></h4>
-        </center>
+
       </div>
       <div class ="col-md-1">
-        <center>
-          <h4><a href ="about.php">About Us</a></h4>
-        </center>
+
       </div>
       <div class ="col-md-1">
-        <center>
-          <h4><a href ="contact.php">Contact</a></h4>
-        </center>
+        
       </div>
       <form action = "" method = "POST" class ="form-group form-inline">
-        <div class ="col-md-5">
-          <label for="username">Username</label><input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex form-control">
-          <label for="password">Password</label><input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex form-control">
+        <div class ="col-md-5" align ="center">
+          <h5 class ="txt-field-mex">Welcome to Mexcritores, Luis. You are a member since
+          <br />
+          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
+          </h5>
+
         </div>
         <div class ="col-md-1">
           <center>
           <div class ="row">
-          <input type="submit" name="submit" value="Log in" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
+          <input type="submit" name="submit" value="Log out" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
           </div>
           <div class ="row">
 
@@ -65,17 +60,54 @@
     <!--End of Header-->
 
     <!--Content-->
-      <div class ="row vertical-center">
-          <div class ="col-md-6 col-md-offset-6 register-space">
-            <h1>Token Registration</h1>
-            <h3>Please enter again your token.
-            <br>An error occurred, token already registered</h3>
-            <form action = "confirm.php" method = "POST" class ="form-group form-inline">
-              <input type="text" name="token" value="" id="token" placeholder="Token" class ="txt-field txt-field-mex col-xs-4 register">
-              &#09;<input type="submit" name="submit" value="Send token" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
-            </form>
-          </div>
+    <div class ="container book-section">
+      <div class ="row">
+        <center>
+          <h2>My books</h2>
+        </center>
+        <!--Aqui van los libros-->
+        <div class ="book-section col-md-3">
+          <center>
+            <a href="displaybook.php"><img src ="img/portada.jpg" class ="img-book"/></a>
+          </center>
+          <br />
+          HOLA
+        </div>
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada2.jpg" class ="img-book"/>
+          </center>
+        </div>
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada3.jpg" class ="img-book"/>
+          </center>
+        </div>
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada4.jpg" class ="img-book"/>
+          </center>
+        </div>
+        <br />
       </div>
+      <div class ="row">
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada5.jpg" class ="img-book"/>
+          </center>
+        </div>
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada6.jpg" class ="img-book"/>
+          </center>
+        </div>
+        <div class ="book-section col-md-3">
+          <center>
+            <img src ="img/portada7.jpg" class ="img-book"/>
+          </center>
+        </div>
+      </div>
+    </div>
     <!--End of content-->
 
     <!--Footer-->
@@ -88,5 +120,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <?php
+      include("../database/DatabaseMysql.php");
+      include("../database/DatabasePsql.php");
+      $dbM = new DatabaseMysql;
+      $dbP = new DatabasePsql;
+
+      $dbM->connect();
+    ?>
   </body>
 </html>

@@ -69,13 +69,16 @@ class User{
 	public function save($tkn) {
 		try{
 
+			
+
+
       $query = $this->con->prepare("SELECT * FROM tokens WHERE token = '$tkn'");
       $query->execute();
 
       $data = $query->fetch();
       //Here I have the selection
 
-      if($data['token'] == $tkn){
+      if($data['token'] == $tkn && $data['activo'] == 0){
   			$query = $this->con->prepare('INSERT INTO usuario(username, password, tipo, email, fecha_creacion, name, lastname) values (?,?,?,?,CURRENT_TIMESTAMP,?,?)');
               $query->bindParam(1, $data['username'], PDO::PARAM_STR);
         			$query->bindParam(2, $data['password'], PDO::PARAM_STR);

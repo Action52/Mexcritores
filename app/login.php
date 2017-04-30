@@ -11,7 +11,7 @@ else
 $username=$_POST['username'];
 $password=$_POST['password'];
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysqli_connect("localhost", "root", "","mexcritoresm");
+$connection = mysqli_connect("localhost", "root", "","mexcritoresMYSQL");
 // To protect MySQL injection for Security purpose
 $username = stripslashes($username);
 $password = stripslashes($password);
@@ -26,19 +26,19 @@ $query = mysqli_query($connection,"select username, password , tipo from usuario
  	  if($row["password"] == $password){
  	  	if($row["tipo"] == 0){ //Reader
  	  		$_SESSION['login_user']=$username;
- 	  		//header("location: adminlanding.php"); 
+ 	  		//header("location: adminlanding.php");
  	  		//Ingresar localizacion de lector
  	  	}
 
  	  	if($row["tipo"] == 1){ //Writer
  	  		$_SESSION['login_user']=$username;
- 	  		//header("location: adminlanding.php"); 
+ 	  		//header("location: adminlanding.php");
  	  		//ingresar localizacion de pagina escritor
  	  	}
 
  	  	if($row["tipo"] == 2){ //admin
  	  		$_SESSION['login_user']=$username;
- 	  		header("location: adminlanding.php"); 
+ 	  		header("location: adminlanding.php");
  	  	}
  	  }
  // Initializing Session

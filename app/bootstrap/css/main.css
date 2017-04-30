@@ -8,8 +8,8 @@
 }
 
 .logo-header{
-  height: 50%;
-  width: 50%;
+  height: 25%;
+  width: 25%;
   align-self: center;
 }
 
@@ -38,9 +38,21 @@
   align-self: center;
 }
 
+.book-section{
+  color: #ffffff;
+  border-width: 2px;
+  border-color: #000000;
+  background-color: rgba(255, 220, 94,0.5);
+}
+
+.img-book{
+  width: 75%;
+  height: 75%;
+}
+
 .register-space{
   background-color: rgba(105,100,100,0.8);
-  color: #000000;
+  color: #ffffff;
 
 }
 
