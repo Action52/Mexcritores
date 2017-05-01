@@ -4,6 +4,7 @@ $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {
 $error = "Username or Password is invalid";
+echo $error;
 }
 else
 {
@@ -11,7 +12,7 @@ else
 $username=$_POST['username'];
 $password=$_POST['password'];
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysqli_connect("localhost", "root", "","mexcritoresMYSQL");
+$connection = mysqli_connect("127.0.0.1", "root", "","mexcritoresMYSQL");
 // To protect MySQL injection for Security purpose
 $username = stripslashes($username);
 $password = stripslashes($password);
@@ -26,7 +27,7 @@ $query = mysqli_query($connection,"select username, password , tipo from usuario
  	  if($row["password"] == $password){
  	  	if($row["tipo"] == 0){ //Reader
  	  		$_SESSION['login_user']=$username;
- 	  		//header("location: adminlanding.php");
+ 	  		header("location: book.php");
  	  		//Ingresar localizacion de lector
  	  	}
 
@@ -43,8 +44,7 @@ $query = mysqli_query($connection,"select username, password , tipo from usuario
  	  }
  // Initializing Session
 
- }else
- echo "ño";
+ }else header('Location: index.php');
 
 
 

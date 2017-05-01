@@ -12,7 +12,7 @@ class User{
     private $password;
     private $nationality;
     private $token;
-
+		private $date;
 
   //Constructor
 	public function __construct(DatabaseMysql $db, DatabasePsql $dbP){
@@ -65,11 +65,15 @@ class User{
         $this->token= $token;
     }
 
+		public function getDate($date){
+			$this->date = $date;
+		}
+
 	//inserción de solicitud de usuario en tabla token
 	public function save($tkn) {
 		try{
 
-			
+
 
 
       $query = $this->con->prepare("SELECT * FROM tokens WHERE token = '$tkn'");
@@ -111,13 +115,23 @@ class User{
     return $token;
   }
 
-    public function update(){
+	public function infoUser($u_name){
+		$query = $this->con->prepare("SELECT * FROM usuario WHERE username ='$u_name'");
+		$query->execute();
+		$result = $query->fetch(); //Save user info in array
+		$this->con->close();
+
+		return $result;
+	}
+
+    public function update($newpass,$newmail,$newname,$newlastname,$u_name){
 		try{
-			$query = $this->con->prepare('UPDATE teacher SET te_name = ?, password = ? , department = ? WHERE id = ? ');
-			$query->bindParam(1, $this->username, PDO::PARAM_STR);
-			$query->bindParam(2, $this->password, PDO::PARAM_STR);
-      $query->bindParam(3, $this->department, PDO::PARAM_STR);
-      $query->bindParam(4, $this->id, PDO::PARAM_INT);
+			$query = $this->con->prepare('UPDATE usuario SET password = ?, email = ? , name = ? , lastname = ? WHERE username = ? ');
+			$query->bindParam(1, $newpass, PDO::PARAM_STR);
+			$query->bindParam(2, $newmail, PDO::PARAM_STR);
+      $query->bindParam(3, $newname, PDO::PARAM_STR);
+      $query->bindParam(4, $newlastname, PDO::PARAM_INT);
+			$query->bindParam(5, $u_name, PDO::PARAM_INT);
 			$query->execute();
 			$this->con->close();
 		}
@@ -148,10 +162,10 @@ class User{
 	    }
 	}
 
-    public function delete(){
+    public function delete($u_name){
         try{
-            $query = $this->con->prepare('DELETE FROM teacher WHERE id = ?');
-            $query->bindParam(1, $this->id, PDO::PARAM_INT);
+            $query = $this->con->prepare('DELETE FROM usuario WHERE username = ?');
+            $query->bindParam(1, $u_name, PDO::PARAM_INT);
             $query->execute();
             $this->con->close();
             return true;

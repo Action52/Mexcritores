@@ -1,3 +1,17 @@
+<?php
+include('login.php'); // Includes Login Script
+
+include('../database/DatabaseMysql.php');
+include('../database/DatabasePsql.php');
+include('../models/User.php');
+$dbM = new DatabaseMysql;
+$dbP = new DatabasePsql;
+$user = new User($dbM,$dbP);
+$userInfo = $user->infoUser($_SESSION['login_user']);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,17 +34,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <?php
-      include('login.php'); // Includes Login Script
-      include('../database/DatabaseMysql.php');
-      include('../database/DatabasePsql.php');
-      include('../models/User.php');
-      $dbM = new DatabaseMysql;
-      $dbP = new DatabasePsql;
-      $user = new User($dbM,$dbP);
-      $userInfo = $user->infoUser($_SESSION['login_user']);
-    ?>
   </head>
   <body class="main-page">
 
@@ -68,51 +71,37 @@
     <!--End of Header-->
 
     <!--Content-->
-    <div class ="container book-section">
+    <div class ="container">
       <div class ="row">
-        <center>
-          <h2>My books</h2>
-        </center>
-        <!--Aqui van los libros-->
-        <div class ="book-section col-md-3">
-          <center>
-            <a href="displaybook.php"><img src ="img/portada.jpg" class ="img-book"/></a>
-          </center>
-          <br />
-          HOLA
+        <div class ="col-md-6">
         </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada2.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada3.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada4.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <br />
-      </div>
-      <div class ="row">
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada5.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada6.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada7.jpg" class ="img-book"/>
-          </center>
+        <div class ="col-md-6 register-space">
+          <h1>Update my information<h1>
+          <h3>
+            Update your data so we can keep in touch with you correctly!
+          </h3>
+          <br>
+          <h4><form action = "updateinfo.php" method = "POST" class ="form-group">
+            <input type="submit" name="submit" value="Update" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
+            <br>
+            <br />
+            Username: <?php echo $_SESSION['login_user']?> is permanent.
+            <br>
+            <br />
+            New Password:
+            <br>
+            <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
+            <br>
+            <br>
+            New Name: <input type="text" name="name" value="" id="name" placeholder="Name" class ="form-control txt-field-mex">
+            <br>
+            New Last name: <input type="text" name="lastname" value="" id="lastname" placeholder="Last name" class ="form-control txt-field-mex">
+            <br>
+            New Mail: <input type="text" name="email" value="" id="email" placeholder="Mail" class ="form-control txt-field-mex">
+            <br>
+            New Nationality: <input type="text" name="nation" value="" id="nation" placeholder="Nationality" class ="form-control txt-field-mex">
+            <br>
+          </form></h4>
         </div>
       </div>
     </div>

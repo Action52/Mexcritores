@@ -13,4 +13,7 @@
   //Salvar el usuario confirmado
 
   $user->save($tkn);
+
+
+  header('Location: index.php');
 ?>

@@ -2,7 +2,7 @@
 include('login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: profile.php");
+  header("location: book.php");
 }
 ?>
 
@@ -53,7 +53,7 @@ header("location: profile.php");
           <h4><a href ="contact.php">Contact</a></h4>
         </center>
       </div>
-      <form action = "" method = "POST" class ="form-group form-inline">
+      <form action = "login.php" method = "POST" class ="form-group form-inline">
         <div class ="col-md-5">
           <label for="username">Username</label><input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex form-control">
           <label for="password">Password</label><input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex form-control">
