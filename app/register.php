@@ -60,42 +60,77 @@
         $token->save(1);
       }
 
-      /*Send token via php mailer
+      /*Send token via php mailer*/
 
-      // primero hay que incluir la clase phpmailer para poder instanciar
-      //un objeto de la misma
-      require "vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
 
+      date_default_timezone_set('Etc/UTC');
+
+      require 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+
+      //Create a new PHPMailer instance
       $mail = new PHPMailer;
 
-      $mail->IsSMTP();                                      // Set mailer to use SMTP
-      $mail->Host = 'smtp.mandrillapp.com';                 // Specify main and backup server
-      $mail->Port = 587;                                    // Set the SMTP port
-      $mail->SMTPAuth = true;                               // Enable SMTP authentication
-      $mail->Username = 'MANDRILL_USERNAME';                // SMTP username
-      $mail->Password = 'MANDRILL_APIKEY';                  // SMTP password
-      $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+      //Tell PHPMailer to use SMTP
+      $mail->isSMTP();
 
-      $mail->From = 'A01322275@itesm.mx';
-      $mail->FromName = 'Your From name';
-      $mail->AddAddress($email, $name);  // Add a recipient
-      //$mail->AddAddress('ellen@example.com');               // Name is optional
+      //Enable SMTP debugging
+      // 0 = off (for production use)
+      // 1 = client messages
+      // 2 = client and server messages
+      $mail->SMTPDebug = 0;
 
-      $mail->IsHTML(true);                                  // Set email format to HTML
+      //Ask for HTML-friendly debug output
+      $mail->Debugoutput = 'html';
 
-      $mail->Subject = 'Here is the subject';
-      $mail->Body    = 'This is the HTML message body <strong>in bold!</strong>';
-      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+      //Set the hostname of the mail server
+      $mail->Host = 'smtp.gmail.com';
+      // use
+      //$mail->Host = gethostbyname('smtp.gmail.com');
+      // if your network does not support SMTP over IPv6
 
-      if(!$mail->Send()) {
-         echo 'Message could not be sent.';
-         echo 'Mailer Error: ' . $mail->ErrorInfo;
-         exit;
+      //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+      $mail->Port = 587;
+
+      //Set the encryption system to use - ssl (deprecated) or tls
+      $mail->SMTPSecure = 'tls';
+
+      //Whether to use SMTP authentication
+      $mail->SMTPAuth = true;
+
+      //Username to use for SMTP authentication - use full email address for gmail
+      $mail->Username = "leonvillapun@gmail.com";
+
+      //Password to use for SMTP authentication
+      $mail->Password = "vhxfupwbbofifyns";
+
+      //Set who the message is to be sent from
+      $mail->setFrom('leonvillapun@gmail.com', 'Mexcritores');
+
+      //Set an alternative reply-to address
+      $mail->addReplyTo('leonvillapun@gmail.com', 'Mexcritores');
+
+      //Set who the message is to be sent to
+      $mail->addAddress($email, $name);
+
+      //Set the subject line
+      $mail->Subject = 'Mexcritores Register Token';
+
+      //Read an HTML message body from an external file, convert referenced images to embedded,
+      //convert HTML into a basic plain-text alternative body
+      //$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
+
+      //Replace the plain text body with one created manually
+      $mail->Body = 'Token: ' . $tkn;
+
+      //Attach an image file
+      //$mail->addAttachment('images/phpmailer_mini.png');
+
+      //send the message, check for errors
+      if (!$mail->send()) {
+          echo "Mailer Error: " . $mail->ErrorInfo;
+      } else {
+
       }
-
-      echo 'Message has been sent';
-      */
-
 
     ?>
 
@@ -104,18 +139,30 @@
 
     <!--Header-->
     <div class ="panel-header header-mex row">
-      <div class ="col-md-3">
-        <center><img src="img/logo.png" class="logo-header"></center>
+      <div class ="col-md-2">
+        <center><a href ="index.php"><img src="img/logo.png" class="logo-header"></a></center>
       </div>
-      <form action = "" method = "POST">
-        <div class ="col-md-2">
-          <h5>Username: </h5> <input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex">
+      <div class ="col-md-2">
+        <center>
+          <h4><a href ="why.php">Why Mexcritores?</a></h4>
+        </center>
+      </div>
+      <div class ="col-md-1">
+        <center>
+          <h4><a href ="about.php">About Us</a></h4>
+        </center>
+      </div>
+      <div class ="col-md-1">
+        <center>
+          <h4><a href ="contact.php">Contact</a></h4>
+        </center>
+      </div>
+      <form action = "login.php" method = "POST" class ="form-group form-inline">
+        <div class ="col-md-5">
+          <label for="username">Username</label><input type="text" name="username" value="" id="username" placeholder="Username" class ="txt-field txt-field-mex form-control">
+          <label for="password">Password</label><input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex form-control">
         </div>
-        <div class ="col-md-2">
-          <h5>Password: </h5> <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
-        </div>
-        <div class ="col-md-2">
-          <br>
+        <div class ="col-md-1">
           <center>
           <div class ="row">
           <input type="submit" name="submit" value="Log in" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">

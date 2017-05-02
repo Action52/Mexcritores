@@ -4,7 +4,7 @@ $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {
 $error = "Username or Password is invalid";
-echo $error;
+header('Location: index.php');
 }
 else
 {
@@ -33,7 +33,7 @@ $query = mysqli_query($connection,"select username, password , tipo from usuario
 
  	  	if($row["tipo"] == 1){ //Writer
  	  		$_SESSION['login_user']=$username;
- 	  		//header("location: adminlanding.php");
+ 	  		header("location: writer.php");
  	  		//ingresar localizacion de pagina escritor
  	  	}
 

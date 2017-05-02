@@ -50,7 +50,7 @@ $userInfo = $user->infoUser($_SESSION['login_user']);
       </div>
       <form action = "logout.php" method = "POST" class ="form-group form-inline">
         <div class ="col-md-6" align ="center">
-          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $_SESSION['login_user'] ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
+          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
           <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
           </h5>
@@ -93,13 +93,11 @@ $userInfo = $user->infoUser($_SESSION['login_user']);
             <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
             <br>
             <br>
-            New Name: <input type="text" name="name" value="" id="name" placeholder="Name" class ="form-control txt-field-mex">
+            New Name: <input type="text" name="name" value="" id="name" placeholder="<?php echo $userInfo['name'];?>" class ="form-control txt-field-mex">
             <br>
-            New Last name: <input type="text" name="lastname" value="" id="lastname" placeholder="Last name" class ="form-control txt-field-mex">
+            New Last name: <input type="text" name="lastname" value="" id="lastname" placeholder="<?php echo $userInfo['lastname'];?>" class ="form-control txt-field-mex">
             <br>
-            New Mail: <input type="text" name="email" value="" id="email" placeholder="Mail" class ="form-control txt-field-mex">
-            <br>
-            New Nationality: <input type="text" name="nation" value="" id="nation" placeholder="Nationality" class ="form-control txt-field-mex">
+            New Mail: <input type="text" name="email" value="" id="email" placeholder="<?php echo $userInfo['email'];?>" class ="form-control txt-field-mex">
             <br>
           </form></h4>
         </div>

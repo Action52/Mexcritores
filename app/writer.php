@@ -54,9 +54,9 @@ if(!isset($_SESSION['login_user'])){
       </div>
       <form action = "logout.php" method = "POST" class ="form-group form-inline">
         <div class ="col-md-6" align ="center">
-          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
+          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username'] ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
-          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
+          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Upload new book</a>
           </h5>
 
         </div>
@@ -78,7 +78,7 @@ if(!isset($_SESSION['login_user'])){
     <div class ="container book-section">
       <div class ="row">
         <center>
-          <h2>My books</h2>
+          <h2>My publications</h2>
         </center>
         <!--Aqui van los libros-->
         <div class ="book-section col-md-3">
@@ -114,11 +114,6 @@ if(!isset($_SESSION['login_user'])){
         <div class ="book-section col-md-3">
           <center>
             <img src ="img/portada6.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada7.jpg" class ="img-book"/>
           </center>
         </div>
       </div>

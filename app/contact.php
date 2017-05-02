@@ -1,13 +1,3 @@
-<?php
-include('login.php'); // Includes Login Script
-
-if(isset($_SESSION['login_user'])){
-  header("location: book.php");
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,6 +20,7 @@ if(isset($_SESSION['login_user'])){
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body class="main-page">
 
@@ -73,42 +64,23 @@ if(isset($_SESSION['login_user'])){
     <!--End of Header-->
 
     <!--Content-->
-    <div class ="container">
-      <div class ="row">
-        <div class ="col-md-6">
-        </div>
-        <div class ="col-md-6 register-space">
-          <h1>Register<h1>
-          <h3>
-            Sign up to our awesome community and rock with new publications everyday!
-          </h3>
-          <br>
-          <h4><form action = "register.php" method = "POST" class ="form-group">
-            Sign up as:
-            <select class ="txt-field-mex" name ="entity">
-              <option value="reader">Reader</option>
-              <option value="writer">Writer</option>
-            </select>
-            <input type="submit" name="submit" value="Register" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
-            <br>
-            <br>
-            Username: <input type="text" name="username" value="" id="username" placeholder="Username" class ="form-control txt-field-mex">
-            <br>
-            Password:
-            <br>
-            <input type="password" name="password" value="" id="password" placeholder="Password" class ="txt-field txt-field-mex">
-            <br>
-            <br>
-            Name: <input type="text" name="name" value="" id="name" placeholder="Name" class ="form-control txt-field-mex">
-            <br>
-            Last name: <input type="text" name="lastname" value="" id="lastname" placeholder="Last name" class ="form-control txt-field-mex">
-            <br>
-            Mail: <input type="text" name="email" value="" id="email" placeholder="Mail" class ="form-control txt-field-mex">
-            <br>
-          </form></h4>
-        </div>
+      <div class ="row vertical-center">
+          <div class ="col-md-6 col-md-offset-6 register-space">
+            <h1>Contact</h1>
+            <h3>Any doubt?
+            <br>Just send us an email!</h3>
+            <form action = "cont.php" method = "POST" class ="form-group">
+              <br />
+              <input type="text" name="email" value="" id="email" placeholder="Your email... something@example.com" class ="txt-field txt-field-mex form-control register">
+              <br />
+              <br />
+              <textarea name="message" value="" id="message" placeholder="Write something..." class ="txt-field txt-field-mex register form-control" rows ="3"></textarea>
+              <br />
+              <br />
+              <input type="submit" name="submit" value="Contact us!" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
+            </form>
+          </div>
       </div>
-    </div>
     <!--End of content-->
 
     <!--Footer-->
@@ -121,14 +93,5 @@ if(isset($_SESSION['login_user'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <?php
-      include("../database/DatabaseMysql.php");
-      include("../database/DatabasePsql.php");
-      $dbM = new DatabaseMysql;
-      $dbP = new DatabasePsql;
-
-      $dbM->connect();
-    ?>
   </body>
 </html>

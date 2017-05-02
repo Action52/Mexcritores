@@ -78,8 +78,9 @@ if(!isset($_SESSION['login_user'])){
     <div class ="container book-section">
       <div class ="row">
         <center>
-          <h2>My books</h2>
+          <h2 class ="black">Store</h2>
         </center>
+        <h3 class ="black">Add new books any time to your personal collection!</h3>
         <!--Aqui van los libros-->
         <div class ="book-section col-md-3">
           <center>
