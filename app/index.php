@@ -2,7 +2,23 @@
 include('login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-  header("location: book.php");
+  include('../database/DatabaseMysql.php');
+  include('../database/DatabasePsql.php');
+  include('../models/User.php');
+  $dbM = new DatabaseMysql;
+  $dbP = new DatabasePsql;
+  $user = new User($dbM,$dbP);
+  $userInfo = $user->infoUser($_SESSION['login_user']);
+
+  if($userInfo['tipo'] == 0){
+      header("location: book.php");
+  }
+  if($userInfo['tipo'] == 1){
+      header("location: writer.php");
+  }
+  if($userInfo['tipo'] == 2){
+      header("location: adminLanding.php");
+  }
 }
 ?>
 

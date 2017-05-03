@@ -54,7 +54,7 @@ if(!isset($_SESSION['login_user'])){
       </div>
       <form action = "logout.php" method = "POST" class ="form-group form-inline">
         <div class ="col-md-6" align ="center">
-          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username'] ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
+          <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
           <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="newbook.php">Upload new book</a>
           </h5>
@@ -75,49 +75,43 @@ if(!isset($_SESSION['login_user'])){
     <!--End of Header-->
 
     <!--Content-->
-    <div class ="container book-section">
-      <div class ="row">
-        <center>
-          <h2>My publications</h2>
-        </center>
-        <!--Aqui van los libros-->
-        <div class ="book-section col-md-3">
-          <center>
-            <a href="displaybook.php"><img src ="img/portada.jpg" class ="img-book"/></a>
-          </center>
-          <br />
-          HOLA
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada2.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada3.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada4.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <br />
+      <div class ="row vertical-center">
+          <div class ="col-md-6 col-md-offset-6 register-space">
+            <h1>Add a new book</h1>
+            <h3>Input the information of your latest publication.
+            <br>Once submitted, it will appear for readers in the store.</h3>
+            <form action = "upload.php" method = "POST" class ="form-group" enctype="multipart/form-data">
+              <input type="text" name="title" value="" id="title" placeholder="Title" class ="txt-field txt-field-mex col-xs-4 register">
+              <br />
+              <br />
+              <input type="text" name="pages" value="" id="pages" placeholder="No. of pages" class ="txt-field txt-field-mex col-xs-4 register">
+              <br />
+              <br />
+              <select name ="genre" id="genre" class ="txt-field-mex">
+                <option value="general">Genre</option>
+                <option value="essay">Essay</option>
+                <option value="biography">Biography</option>
+                <option value="short_story">Short story</option>
+                <option value="fiction">Fiction</option>
+                <option value="poetry">Poetry</option>
+                <option value="novel">Novel</option>
+              </select>
+              <br />
+              <br />
+              <textarea name="description" value="" id="description" placeholder="Description" class ="txt-field txt-field-mex register form-control" rows ="3"></textarea>
+              <br />
+              <label for="book">Book</label>
+              <br /><input type="file" name="book" value="" id="book" class ="txt-field txt-field-mex col-xs-4 register">
+              <br />
+              <br />
+              <label for="cover">Cover (Recommended 200*400)</label>
+              <br /><input type="file" name="cover" value="" id="cover" class ="txt-field txt-field-mex col-xs-4 register">
+              <br />
+              <br />
+              <input type="submit" name="submit" value="Add book" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
+            </form>
+          </div>
       </div>
-      <div class ="row">
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada5.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada6.jpg" class ="img-book"/>
-          </center>
-        </div>
-      </div>
-    </div>
     <!--End of content-->
 
     <!--Footer-->
