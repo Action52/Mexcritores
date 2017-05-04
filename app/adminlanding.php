@@ -18,9 +18,9 @@ include('session.php');
                 <div class="col-lg-1" style="margin-bottom: 10px">
 
 
-                    <a href = "app/listwriters.php">Escritores</a>
+                    <a href = "listwriters.php">Escritores</a>
 
-                    <a href = "app/teacherlist.php">Profesores</a>
+                    <a href = "listreaders.php">Lectores</a>
 
 
 
