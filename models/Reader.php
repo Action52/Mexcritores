@@ -15,9 +15,6 @@ class Reader implements IUser {
         $this->con = new $db;
     }
 
-      public function __construct(DatabaseMysql $dbm){
-        $this->con_m = new $dbm;
-    }
 
     public function setId($id){
         $this->id = $id;

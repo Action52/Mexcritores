@@ -102,7 +102,7 @@ if(!isset($_SESSION['login_user'])){
             <h3>
               <br />
               <br / />
-              <a href="teacherlist.php"><img src ="img/writer3.png" /></a>
+              <a href="listreaders.php"><img src ="img/writer3.png" /></a>
               <br />
               Edit writers
             </h3>
