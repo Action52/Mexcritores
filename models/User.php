@@ -93,7 +93,34 @@ class User{
   			$query->execute();
 
         $query = $this->con->prepare("UPDATE tokens SET ACTIVO = 1 WHERE token = '$tkn'");
-        $query->execute();
+				$query->execute();
+
+
+				//Add user to postgreSql
+				if($data['tipo'] == 0){//Lector
+					$query = $this->conP->prepare('INSERT INTO lector (nombrelec, apellidos, email, username) VALUES (?,?,?,?)');
+						$query->bindParam(1, $data['name'], PDO::PARAM_STR);
+						$query->bindParam(2, $data['lastname'], PDO::PARAM_STR);
+						$query->bindParam(3, $data['email'], PDO::PARAM_STR);
+						$query->bindParam(4, $data['username'], PDO::PARAM_STR);
+					$query->execute();
+				}
+				if($data['tipo'] == 1){//Escritor
+					$query = $this->conP->prepare('INSERT INTO escritor(nombre, apellidos, email, username) VALUES (?,?,?,?)');
+						$query->bindParam(1, $data['name'], PDO::PARAM_STR);
+						$query->bindParam(2, $data['lastname'], PDO::PARAM_STR);
+						$query->bindParam(3, $data['email'], PDO::PARAM_STR);
+						$query->bindParam(4, $data['username'], PDO::PARAM_STR);
+					$query->execute();
+				}
+				if($data['tipo]'] == 2){//Admin
+					$query = $this->conP->prepare('INSERT INTO admin(username) VALUES (?)');
+						$query->bindParam(1, $data['username'], PDO::PARAM_STR);
+					$query->execute();
+				}
+
+
+
       }
       else{
         header("Location: error.php");

@@ -24,12 +24,10 @@
     <?php
       //Get information from POST and work on it
       $entity = $_POST['entity'];
-      $age = $_POST['age'];
       $username = $_POST['username'];
       $name = $_POST['name'];
       $lastname = $_POST['lastname'];
       $email = $_POST['email'];
-      $nationality = $_POST['nation'];
       $password = $_POST['password'];
 
       //include connections
