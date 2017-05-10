@@ -3,7 +3,7 @@ require_once("../database/DatabasePsql.php");
 require_once("../interfaces/IUser.php");
 
 class Writer implements IUser {
-	private $con;
+	private $con, $con_m;
     private $id;
     private $nombre;
     private $apellidos;
@@ -11,9 +11,10 @@ class Writer implements IUser {
     private $edad;
     private $nacionalidad;
 
-	public function __construct(DatabasePsql $db){
-		$this->con = new $db;
-	}
+		public function __construct(DatabaseMysql $dbm, DatabasePsql $db){
+				$this->con = new $db;
+				$this->con_m = new $dbm;
+		}
 
     public function setId($id){
         $this->id = $id;
@@ -107,6 +108,19 @@ class Writer implements IUser {
             echo  $e->getMessage();
         }
     }
+
+		public function deleteWithUsername($u_name){
+				try{
+						$query = $this->con->prepare('DELETE FROM escritor WHERE username = ?');
+						$query->bindParam(1, $u_name, PDO::PARAM_INT);
+						$query->execute();
+						$this->con->close();
+						return true;
+				}
+				catch(PDOException $e){
+						echo  $e->getMessage();
+				}
+		}
 
     public static function baseurl() {
          return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/Mexcritores/Mexcritores/";
