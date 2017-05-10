@@ -66,6 +66,7 @@ if(!isset($_SESSION['login_user'])){
           </div>
           <div class ="row">
 
+<<<<<<< HEAD
           </div>
           </center>
         </div>
@@ -79,6 +80,11 @@ if(!isset($_SESSION['login_user'])){
         <center>
           <h2>Administrate Mexcritores</h2>
         </center>
+=======
+                    <a href = "listwriters.php">Escritores</a>
+
+                    <a href = "listreaders.php">Lectores</a>
+>>>>>>> b5e310130627c3defbddb0eeac3f41e3e30a558b
 
         <div class ="col-md-6">
           <center>
