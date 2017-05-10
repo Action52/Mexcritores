@@ -11,13 +11,11 @@ class Reader implements IUser {
     private $apellidos;
     private $email;
 
-    public function __construct(DatabasePsql $db){
+    public function __construct(DatabaseMysql $dbm, DatabasePsql $db){
         $this->con = new $db;
-    }
-
-      public function __construct(DatabaseMysql $dbm){
         $this->con_m = new $dbm;
     }
+
 
     public function setId($id){
         $this->id = $id;
@@ -44,7 +42,7 @@ class Reader implements IUser {
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
             $query->execute();
             $this->con->close();
-            
+
         }
         catch(PDOException $e) {
             echo  $e->getMessage();
@@ -92,6 +90,19 @@ class Reader implements IUser {
         try{
             $query = $this->con->prepare('DELETE FROM lector WHERE id = ?');
             $query->bindParam(1, $this->id, PDO::PARAM_INT);
+            $query->execute();
+            $this->con->close();
+            return true;
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+
+    public function deleteWithUsername($u_name){
+        try{
+            $query = $this->con->prepare('DELETE FROM lector WHERE username = ?');
+            $query->bindParam(1, $u_name, PDO::PARAM_INT);
             $query->execute();
             $this->con->close();
             return true;
