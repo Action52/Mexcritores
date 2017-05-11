@@ -1,7 +1,8 @@
 <?php
 require_once "../models/Writer.php";
 $db = new DatabasePsql;
-$user = new Writer($db);
+$dbm = new DatabaseMysql;
+$user = new Writer($dbm,$db);
 $id = filter_input(INPUT_GET, 'user', FILTER_VALIDATE_INT);
 
 if( $id )

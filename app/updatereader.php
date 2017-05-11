@@ -20,7 +20,8 @@ if( $post->id === false )
 }
 
 $db = new DatabasePsql;
-$user = new Reader($db);
+$dbm = new DatabaseMysql;
+$user = new Reader($dbm,$db);
 $user->setId($post->id);
 $user->setnombrelec($post->nombrelec);
 $user->setapellidos($post->apellidos);

@@ -19,7 +19,8 @@ include('session.php');
         header("Location:" . Reader::baseurl() . "app/listReaders.php");
     }
     $db = new DatabasePsql;
-    $newUser = new Reader($db);
+    $dbm = new DatabaseMysql;
+    $newUser = new Reader($dbm,$db);
     $newUser->setId($id);
     $user = $newUser->get();
     $newUser->checkUser($user);

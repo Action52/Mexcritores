@@ -15,7 +15,8 @@ include('session.php');
         <?php
         require_once "../models/Writer.php";
         $db = new DatabasePsql;
-        $user = new Writer($db);
+        $dbm = new DatabaseMysql;
+        $user = new Writer($dbm,$db);
         $users = $user->get();
         ?>
         <div class="container">

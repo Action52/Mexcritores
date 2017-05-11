@@ -1,7 +1,8 @@
 <?php
 require_once "../models/Reader.php";
 $db = new DatabasePsql;
-$user = new Reader($db);
+$dbm = new DatabaseMysql;
+$user = new Reader($dbm,$db);
 $id = filter_input(INPUT_GET, 'user', FILTER_VALIDATE_INT);
 
 if( $id )
