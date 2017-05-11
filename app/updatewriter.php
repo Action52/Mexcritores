@@ -20,7 +20,7 @@ $post = (object)filter_input_array(INPUT_POST, $args);
 
 if( $post->id === false )
 {
-   // header("Location:" . Writer::baseurl() . "app/listwriters.php");
+    header("Location:" . Writer::baseurl() . "app/listwriters.php");
 }
 
 $db = new DatabasePsql;
@@ -33,4 +33,4 @@ $user->setemail($post->email);
 $user->setusername($post->username);
 $user->setpassword($pass);
 $user->update();
-//header("Location:" . Writer::baseurl() . "app/listwriters.php");
+header("Location:" . Writer::baseurl() . "app/listwriters.php");

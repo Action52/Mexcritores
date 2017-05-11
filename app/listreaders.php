@@ -21,7 +21,7 @@ include('session.php');
         ?>
         <div class="container">
             <div class="col-lg-12">
-                <h2 class="text-center text-primary">Lista de escritores</h2>
+                <h2 class="text-center text-primary">Lista de lectores</h2>
                 <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
                     <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>/app/addReader.php">Add user</a>
                 </div>
@@ -35,6 +35,7 @@ include('session.php');
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>E-mail</th>
+                        <th>Username</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
@@ -44,9 +45,10 @@ include('session.php');
                             <td><?php echo $user->nombrelec ?></td>
                             <td><?php echo $user->apellidos ?></td>
                             <td><?php echo $user->email ?></td>
+                            <td><?php echo $user->username ?></td>
                             <td>
                                 <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>app/editReader.php?user=<?php echo $user->id ?>">Edit</a> 
-                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>app/deleteReader.php?user=<?php echo $user->id ?>">Delete</a>
+                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>app/deleteReader.php?user=<?php echo $user->username ?>">Delete</a>
                             </td>
                         </tr>
                     <?php

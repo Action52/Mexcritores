@@ -25,6 +25,14 @@
                     <label for="email">email</label>
                     <input type="text" name="email" value="" class="form-control" id="email" placeholder="email">
                 </div>
+                <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="text" name="username" value="" class="form-control" id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" name="password" value="" class="form-control" id="password" placeholder="password">
+                </div>
                 <input type="submit" name="submit" class="btn btn-default" value="Guardar lector" />
             </form>
         </div>

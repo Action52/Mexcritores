@@ -10,9 +10,15 @@ $args = array(
     'nombrelec'  => FILTER_SANITIZE_STRING,
     'apellidos'  => FILTER_SANITIZE_STRING,
     'email'  => FILTER_SANITIZE_STRING,
+    'password'  => FILTER_SANITIZE_STRING,
+    'username' => FILTER_SANITIZE_STRING,
 );
 
 $post = (object)filter_input_array(INPUT_POST, $args);
+
+echo $post->username;
+
+ $pass= md5($post->password);
 
 if( $post->id === false )
 {
@@ -26,5 +32,7 @@ $user->setId($post->id);
 $user->setnombrelec($post->nombrelec);
 $user->setapellidos($post->apellidos);
 $user->setemail($post->email);
+$user->setusername($post->username);
+$user->setpassword($pass);
 $user->update();
 header("Location:" . Reader::baseurl() . "app/listReaders.php");

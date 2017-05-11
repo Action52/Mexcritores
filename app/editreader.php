@@ -27,7 +27,7 @@ include('session.php');
     ?>
     <div class="container">
         <div class="col-lg-12">
-            <h2 class="text-center text-primary">Editar lector:  <?php echo $user->nombrelec ?></h2>
+            <h2 class="text-center text-primary">Editar lector:  <?php echo $user->username ?></h2>
             <form action="<?php echo Reader::baseurl() ?>app/updateReader.php" method="POST">
                 <div class="form-group">
                     <label for="nombrelec">nombre</label>
@@ -41,6 +41,11 @@ include('session.php');
                     <label for="email">email</label>
                     <input type="text" name="email" value="<?php echo $user->email ?>" class="form-control" id="email" placeholder="email">
                 </div>
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" name="password" value="password" class="form-control" id="password" placeholder="password">
+                </div>
+                <input type="hidden" name="username" value="<?php echo $user->username ?>" class="form-control" id="username" placeholder="">
                 <input type="hidden" name="id" value="<?php echo $user->id ?>" />
                 <input type="submit" name="submit" class="btn btn-default" value="Update user" />
             </form>

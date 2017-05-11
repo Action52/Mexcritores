@@ -10,6 +10,8 @@ class Reader implements IUser {
     private $nombrelec;
     private $apellidos;
     private $email;
+    private $username;
+    private $password;
 
     public function __construct(DatabaseMysql $dbm, DatabasePsql $db){
         $this->con = new $db;
@@ -33,15 +35,34 @@ class Reader implements IUser {
         $this->email = $email;
     }
 
+    public function setusername($username){
+        $this->username = $username;
+    }
+
+    public function setpassword($password){
+        $this->password = $password;
+    }
+
     //insertamos usuarios en una tabla con postgreSql
     public function save() {
         try{
-            $query = $this->con->prepare('INSERT INTO lector (nombrelec,apellidos,email) values (?,?,?)');
+            $query = $this->con->prepare('INSERT INTO lector (nombrelec,apellidos,email,username) values (?,?,?,?)');
             $query->bindParam(1, $this->nombrelec, PDO::PARAM_STR);
             $query->bindParam(2, $this->apellidos, PDO::PARAM_STR);
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
+            $query->bindParam(4, $this->username, PDO::PARAM_STR);
             $query->execute();
+            
+
+            $query2 = $this->con_m->prepare('INSERT INTO usuario(username,password,tipo,email,fecha_creacion,name,lastname) values (?,?,0,?,CURRENT_TIMESTAMP,?,?)');
+            $query2->bindParam(1, $this->username, PDO::PARAM_STR);
+            $query2->bindParam(2, $this->password, PDO::PARAM_STR);
+            $query2->bindParam(3, $this->email, PDO::PARAM_STR);
+            $query2->bindParam(4, $this->nombrelec, PDO::PARAM_STR);
+            $query2->bindParam(5, $this->apellidos, PDO::PARAM_STR);
+            $query2->execute();
             $this->con->close();
+            $this->con_m->close();
             
         }
         catch(PDOException $e) {
@@ -57,7 +78,20 @@ class Reader implements IUser {
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
             $query->bindParam(4, $this->id, PDO::PARAM_INT);
             $query->execute();
+            
+
+
+
+
+            $query2 = $this->con_m->prepare('UPDATE usuario SET password  = ?,email  = ?,name  = ?,lastname  = ? WHERE username = ?');
+            $query2->bindParam(1, $this->password, PDO::PARAM_STR);
+            $query2->bindParam(2, $this->email, PDO::PARAM_STR);
+            $query2->bindParam(3, $this->nombrelec, PDO::PARAM_STR);
+            $query2->bindParam(4, $this->apellidos, PDO::PARAM_STR);
+            $query2->bindParam(5, $this->username, PDO::PARAM_STR);
+            $query2->execute();
             $this->con->close();
+            $this->con_m->close();
         }
         catch(PDOException $e){
             echo  $e->getMessage();
@@ -103,10 +137,18 @@ class Reader implements IUser {
 
     public function delete(){
         try{
-            $query = $this->con->prepare('DELETE FROM lector WHERE id = ?');
-            $query->bindParam(1, $this->id, PDO::PARAM_INT);
+            $query = $this->con->prepare('DELETE FROM lector WHERE username = ?');
+            $query->bindParam(1, $this->username, PDO::PARAM_INT);
             $query->execute();
+
+            $query2 = $this->con_m->prepare('DELETE FROM usuario WHERE username = ?');
+            $query2->bindParam(1, $this->username, PDO::PARAM_STR);
+            $query2->execute();
+
+
             $this->con->close();
+            $this->con_m->close();
+        
             return true;
         }
         catch(PDOException $e){

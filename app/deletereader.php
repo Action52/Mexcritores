@@ -3,11 +3,12 @@ require_once "../models/Reader.php";
 $db = new DatabasePsql;
 $dbm = new DatabaseMysql;
 $user = new Reader($dbm,$db);
-$id = filter_input(INPUT_GET, 'user', FILTER_VALIDATE_INT);
+$username = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_ENCODED);
 
-if( $id )
+
+if( $username)
 {
-    $user->setId($id);
+    $user->setusername($username);
     $user->delete();
 }
 header("Location:" . Reader::baseurl() . "app/listReaders.php");
