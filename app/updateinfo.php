@@ -3,6 +3,8 @@
   include('../database/DatabaseMysql.php');
   include('../database/DatabasePsql.php');
   include('../models/User.php');
+  include('../models/Reader.php');
+  include('../models/Writer.php');
   $dbM = new DatabaseMysql;
   $dbP = new DatabasePsql;
   $user = new User($dbM,$dbP);
@@ -18,7 +20,14 @@
 
 
   //Update from postgreSql
-
+  if($userInfo['tipo'] == 0){ //Reader
+    $reader = new Reader($dbM,$dbP);
+    $reader->updateWithData($newname,$newlastname,$newmail,$_SESSION['login_user']);
+  }
+  if($userInfo['tipo'] == 1){ //Writer
+    $writer = new Writer($dbM,$dbP);
+    $writer->updateWithData($newname,$newlastname,$newmail,$_SESSION['login_user']);
+  }
 
   //Final logout
 

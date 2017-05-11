@@ -74,6 +74,22 @@ class Writer implements IUser {
 	    }
 	}
 
+
+	public function updateWithData($new_name,$new_lastname,$new_mail, $u_name){
+			try{
+					$query = $this->con->prepare('UPDATE escritor SET nombre = ?, apellidos = ?, email = ? WHERE username = ?');
+					$query->bindParam(1, $new_name, PDO::PARAM_STR);
+					$query->bindParam(2, $new_lastname, PDO::PARAM_STR);
+					$query->bindParam(3, $new_mail, PDO::PARAM_STR);
+					$query->bindParam(4, $u_name, PDO::PARAM_INT);
+					$query->execute();
+					$this->con->close();
+			}
+			catch(PDOException $e){
+					echo  $e->getMessage();
+			}
+	}
+
 	//obtenemos usuarios de una tabla con postgreSql
 	public function get(){
 		try{
