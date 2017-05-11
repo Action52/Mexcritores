@@ -15,7 +15,8 @@ include('session.php');
         <?php
         require_once "../models/Reader.php";
         $db = new DatabasePsql;
-        $user = new Reader($db);
+        $dbm = new DatabaseMysql;
+        $user = new Reader($dbm,$db);
         $users = $user->get();
         ?>
         <div class="container">

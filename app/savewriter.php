@@ -10,14 +10,21 @@ $args = array(
     'nombre'  => FILTER_SANITIZE_STRING,
     'apellidos'  => FILTER_SANITIZE_STRING,
     'email'  => FILTER_SANITIZE_STRING,
+    'username'  => FILTER_SANITIZE_STRING,
+    'password'  => FILTER_SANITIZE_STRING,
 );
 
 $post = (object)filter_input_array(INPUT_POST, $args);
 
+ $post->password = md5($post->password);
+
 $db = new DatabasePsql;
-$user = new Writer($db);
+$dbm = new DatabaseMysql;
+$user = new Writer($dbm,$db);
 $user->setnombre($post->nombre);
 $user->setapellidos($post->apellidos);
 $user->setemail($post->email);
+$user->setusername($post->username);
+$user->setpassword($post->password);
 $user->save();
 header("Location:" . Writer::baseurl() . "app/listwriters.php");

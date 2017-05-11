@@ -15,7 +15,8 @@ $args = array(
 $post = (object)filter_input_array(INPUT_POST, $args);
 
 $db = new DatabasePsql;
-$user = new Reader($db);
+$dbm = new DatabaseMysql;
+$user = new Reader($dbm,$db);
 $user->setnombrelec($post->nombrelec);
 $user->setapellidos($post->apellidos);
 $user->setemail($post->email);

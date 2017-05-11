@@ -42,7 +42,7 @@ class Reader implements IUser {
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
             $query->execute();
             $this->con->close();
-
+            
         }
         catch(PDOException $e) {
             echo  $e->getMessage();

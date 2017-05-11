@@ -18,7 +18,8 @@ include('session.php');
         header("Location:" . Writer::baseurl() . "app/listwriters.php");
     }
     $db = new DatabasePsql;
-    $newUser = new Writer($db);
+    $dbm = new DatabaseMysql;
+    $newUser = new Writer($dbm,$db);
     $newUser->setId($id);
     $user = $newUser->get();
     $newUser->checkUser($user);
@@ -38,6 +39,10 @@ include('session.php');
                 <div class="form-group">
                     <label for="email">email</label>
                     <input type="text" name="email" value="<?php echo $user->email ?>" class="form-control" id="email" placeholder="email">
+                </div>
+                  <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" name="password" value="new pass" class="form-control" id="password" placeholder="password">
                 </div>
                 <input type="hidden" name="id" value="<?php echo $user->id ?>" />
                 <input type="submit" name="submit" class="btn btn-default" value="Update user" />
