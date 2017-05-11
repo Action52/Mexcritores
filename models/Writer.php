@@ -45,10 +45,11 @@ class Writer implements IUser {
 	//insertamos usuarios en una tabla con postgreSql
 	public function save() {
 		try{
-			$query = $this->con->prepare('INSERT INTO escritor (nombre,apellidos,email) values (?,?,?)');
+			$query = $this->con->prepare('INSERT INTO escritor (nombre,apellidos,email,username) values (?,?,?,?)');
             $query->bindParam(1, $this->nombre, PDO::PARAM_STR);
 			$query->bindParam(2, $this->apellidos, PDO::PARAM_STR);
             $query->bindParam(3, $this->email, PDO::PARAM_STR);
+            $query->bindParam(4, $this->username, PDO::PARAM_STR);
 			$query->execute();
 			
 
@@ -85,7 +86,7 @@ class Writer implements IUser {
             $query2->bindParam(2, $this->email, PDO::PARAM_STR);
             $query2->bindParam(3, $this->nombre, PDO::PARAM_STR);
             $query2->bindParam(4, $this->apellidos, PDO::PARAM_STR);
-            $query->bindParam(5, $this->username, PDO::PARAM_INT);
+            $query2->bindParam(5, $this->username, PDO::PARAM_STR);
             $query2->execute();
             $this->con->close();
             $this->con_m->close();
@@ -114,6 +115,24 @@ class Writer implements IUser {
 					echo  $e->getMessage();
 			}
 	}
+
+
+
+    public function updateWithDataM($new_name,$new_lastname,$new_mail,$new_pass ,$u_name){
+            try{
+                    $query = $this->con_m->prepare('UPDATE usuario SET password  = ?,email  = ?,name  = ?,lastname  = ? WHERE username = ?');
+                    $query->bindParam(1, $new_pass, PDO::PARAM_STR);
+                    $query->bindParam(2, $new_email, PDO::PARAM_STR);
+                    $query->bindParam(3, $new_name, PDO::PARAM_STR);
+                    $query->bindParam(4, $new_lastname, PDO::PARAM_STR);
+                    $query->bindParam(5, $u_name, PDO::PARAM_INT);
+                    $query->execute();
+                    $this->con_m->close();
+            }
+            catch(PDOException $e){
+                    echo  $e->getMessage();
+            }
+    }
 
 	//obtenemos usuarios de una tabla con postgreSql
 	public function get(){
@@ -160,10 +179,18 @@ class Writer implements IUser {
 
     public function delete(){
         try{
-            $query = $this->con->prepare('DELETE FROM escritor WHERE id = ?');
-            $query->bindParam(1, $this->id, PDO::PARAM_INT);
+            $query = $this->con->prepare('DELETE FROM escritor WHERE username = ?');
+            $query->bindParam(1, $this->username, PDO::PARAM_STR);
             $query->execute();
+
+
+            $query2 = $this->con_m->prepare('DELETE FROM usuario WHERE username = ?');
+            $query2->bindParam(1, $this->username, PDO::PARAM_STR);
+            $query2->execute();
+
+
             $this->con->close();
+            $this->con_m->close();
             return true;
         }
         catch(PDOException $e){

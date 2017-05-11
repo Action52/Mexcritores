@@ -26,7 +26,7 @@ include('session.php');
     ?>
     <div class="container">
         <div class="col-lg-12">
-            <h2 class="text-center text-primary">Editar escritor:  <?php echo $user->nombre ?></h2>
+            <h2 class="text-center text-primary">Editar escritor:  <?php echo $user->username ?></h2>
             <form action="<?php echo Writer::baseurl() ?>app/updatewriter.php" method="POST">
                 <div class="form-group">
                     <label for="nombre">nombre</label>
@@ -44,6 +44,7 @@ include('session.php');
                     <label for="password">password</label>
                     <input type="password" name="password" value="new pass" class="form-control" id="password" placeholder="password">
                 </div>
+                <input type="hidden" name="username" value="<?php echo $user->username ?>" class="form-control" id="username" placeholder="">
                 <input type="hidden" name="id" value="<?php echo $user->id ?>" />
                 <input type="submit" name="submit" class="btn btn-default" value="Update user" />
             </form>

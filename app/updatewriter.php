@@ -11,6 +11,7 @@ $args = array(
     'apellidos'  => FILTER_SANITIZE_STRING,
     'email'  => FILTER_SANITIZE_STRING,
     'password'  => FILTER_SANITIZE_STRING,
+    'username' => FILTER_SANITIZE_STRING,
 );
 
 $post = (object)filter_input_array(INPUT_POST, $args);
@@ -19,7 +20,7 @@ $post = (object)filter_input_array(INPUT_POST, $args);
 
 if( $post->id === false )
 {
-    header("Location:" . Writer::baseurl() . "app/listwriters.php");
+   // header("Location:" . Writer::baseurl() . "app/listwriters.php");
 }
 
 $db = new DatabasePsql;
@@ -29,6 +30,7 @@ $user->setId($post->id);
 $user->setnombre($post->nombre);
 $user->setapellidos($post->apellidos);
 $user->setemail($post->email);
+$user->setusername($post->username);
 $user->setpassword($pass);
 $user->update();
-header("Location:" . Writer::baseurl() . "app/listwriters.php");
+//header("Location:" . Writer::baseurl() . "app/listwriters.php");

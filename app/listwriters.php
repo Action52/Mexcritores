@@ -35,6 +35,7 @@ include('session.php');
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>E-mail</th>
+                        <th>username</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
@@ -44,9 +45,10 @@ include('session.php');
                             <td><?php echo $user->nombre ?></td>
                             <td><?php echo $user->apellidos ?></td>
                             <td><?php echo $user->email ?></td>
+                            <td><?php echo $user->username ?></td>
                             <td>
                                 <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>app/editwriter.php?user=<?php echo $user->id ?>">Edit</a> 
-                                <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>app/deletewriter.php?user=<?php echo $user->id ?>">Delete</a>
+                                <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>app/deletewriter.php?user=<?php echo $user->username ?>">Delete</a>
                             </td>
                         </tr>
                     <?php

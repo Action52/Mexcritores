@@ -3,11 +3,12 @@ require_once "../models/Writer.php";
 $db = new DatabasePsql;
 $dbm = new DatabaseMysql;
 $user = new Writer($dbm,$db);
-$id = filter_input(INPUT_GET, 'user', FILTER_VALIDATE_INT);
+$username = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_ENCODED);
 
-if( $id )
+if( $username)
 {
-    $user->setId($id);
+    $user->setusername($username);
+    echo $username;
     $user->delete();
 }
 header("Location:" . Writer::baseurl() . "app/listwriters.php");
