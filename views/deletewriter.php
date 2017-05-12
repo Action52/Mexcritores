@@ -11,4 +11,4 @@ if( $username)
     echo $username;
     $user->delete();
 }
-header("Location:" . Writer::baseurl() . "app/listwriters.php");
+header("Location:" . Writer::baseurl() . "views/listwriters.php");

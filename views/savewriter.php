@@ -2,7 +2,7 @@
 require_once "../models/Writer.php";
 if (empty($_POST['submit']))
 {
-      header("Location:" . Writer::baseurl() . "app/listwriters.php");
+      header("Location:" . Writer::baseurl() . "views/listwriters.php");
       exit;
 }
 
@@ -27,4 +27,4 @@ $user->setemail($post->email);
 $user->setusername($post->username);
 $user->setpassword($post->password);
 $user->save();
-header("Location:" . Writer::baseurl() . "app/listwriters.php");
+header("Location:" . Writer::baseurl() . "views/listwriters.php");

@@ -2,7 +2,7 @@
 require_once "../models/Reader.php";
 if (empty($_POST['submit']))
 {
-      header("Location:" . Reader::baseurl() . "app/listReaders.php");
+      header("Location:" . Reader::baseurl() . "views/listReaders.php");
       exit;
 }
 $args = array(
@@ -22,7 +22,7 @@ echo $post->username;
 
 if( $post->id === false )
 {
-    header("Location:" . Reader::baseurl() . "app/listReaders.php");
+    header("Location:" . Reader::baseurl() . "views/listReaders.php");
 }
 
 $db = new DatabasePsql;
@@ -35,4 +35,4 @@ $user->setemail($post->email);
 $user->setusername($post->username);
 $user->setpassword($pass);
 $user->update();
-header("Location:" . Reader::baseurl() . "app/listReaders.php");
+header("Location:" . Reader::baseurl() . "views/listReaders.php");

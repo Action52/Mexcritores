@@ -2,7 +2,7 @@
 require_once "../models/Reader.php";
 if (empty($_POST['submit']))
 {
-      header("Location:" . Reader::baseurl() . "app/listreaders.php");
+      header("Location:" . Reader::baseurl() . "views/listreaders.php");
       exit;
 }
 
@@ -27,4 +27,4 @@ $user->setemail($post->email);
 $user->setusername($post->username);
 $user->setpassword($post->password);
 $user->save();
-header("Location:" . Reader::baseurl() . "app/listreaders.php");
+header("Location:" . Reader::baseurl() . "views/listreaders.php");

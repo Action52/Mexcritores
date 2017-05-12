@@ -8,22 +8,22 @@ include('session.php');
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Listado de escritores</title>
+        <title>Listado de libros</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
         <?php
-        require_once "../models/Writer.php";
+        require_once "../models/Book.php";
         $db = new DatabasePsql;
         $dbm = new DatabaseMysql;
-        $user = new Writer($dbm,$db);
+        $user = new Book($dbm,$db);
         $users = $user->get();
         ?>
         <div class="container">
             <div class="col-lg-12">
-                <h2 class="text-center text-primary">Lista de escritores</h2>
+                <h2 class="text-center text-primary">Lista de libros</h2>
                 <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
-                    <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>/views/addwriter.php">Add user</a>
+                    <a class="btn btn-info" href="<?php echo Book::baseurl() ?>/views/addbook.php">Add user</a>
                 </div>
                 <?php
                 if( ! empty( $users ) )
@@ -32,23 +32,25 @@ include('session.php');
                 <table class="table table-striped">
                     <tr>
                         <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>E-mail</th>
-                        <th>username</th>
+                        <th>titulo</th>
+                        <th>descripcion</th>
+                        <th>paginas</th>
+                        <th>genero</th>
+                        <th>URL</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
                     ?>
                         <tr>
                             <td><?php echo $user->id ?></td>
-                            <td><?php echo $user->nombre ?></td>
-                            <td><?php echo $user->apellidos ?></td>
-                            <td><?php echo $user->email ?></td>
-                            <td><?php echo $user->username ?></td>
+                            <td><?php echo $user->titulo ?></td>f
+                            <td><?php echo $user->descripcion ?></td>
+                            <td><?php echo $user->paginas ?></td>
+                            <td><?php echo $user->genero ?></td>
+                            <td><?php echo $user->url ?></td>
                             <td>
-                                <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>views/editwriter.php?user=<?php echo $user->id ?>">Edit</a> 
-                                <a class="btn btn-info" href="<?php echo Writer::baseurl() ?>views/deletewriter.php?user=<?php echo $user->username ?>">Delete</a>
+                                <a class="btn btn-info" href="<?php echo Book::baseurl() ?>views/editbook.php?user=<?php echo $user->id ?>">Edit</a> 
+                                <a class="btn btn-info" href="<?php echo Book::baseurl() ?>views/deletebook.php?user=<?php echo $user->id ?>">Delete</a>
                             </td>
                         </tr>
                     <?php

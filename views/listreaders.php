@@ -23,7 +23,7 @@ include('session.php');
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Lista de lectores</h2>
                 <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
-                    <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>/app/addReader.php">Add user</a>
+                    <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>/views/addReader.php">Add user</a>
                 </div>
                 <?php
                 if( ! empty( $users ) )
@@ -47,8 +47,8 @@ include('session.php');
                             <td><?php echo $user->email ?></td>
                             <td><?php echo $user->username ?></td>
                             <td>
-                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>app/editReader.php?user=<?php echo $user->id ?>">Edit</a> 
-                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>app/deleteReader.php?user=<?php echo $user->username ?>">Delete</a>
+                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>views/editReader.php?user=<?php echo $user->id ?>">Edit</a> 
+                                <a class="btn btn-info" href="<?php echo Reader::baseurl() ?>views/deleteReader.php?user=<?php echo $user->username ?>">Delete</a>
                             </td>
                         </tr>
                     <?php

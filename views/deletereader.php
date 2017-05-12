@@ -11,4 +11,4 @@ if( $username)
     $user->setusername($username);
     $user->delete();
 }
-header("Location:" . Reader::baseurl() . "app/listReaders.php");
+header("Location:" . Reader::baseurl() . "views/listReaders.php");
