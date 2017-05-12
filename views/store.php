@@ -78,61 +78,67 @@ if(!isset($_SESSION['login_user'])){
     <div class ="container book-section">
       <div class ="row">
         <center>
-          <h2 class ="black">Store</h2>
+          <h2>Store</h2>
         </center>
-        <h3 class ="black">Add new books any time to your personal collection!</h3>
         <!--Aqui van los libros-->
-        <div class ="book-section col-md-3">
-          <center>
-            <a href="displaybook.php"><img src ="img/portada.jpg" class ="img-book"/></a>
-          </center>
-          <br />
-          HOLA
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada2.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada3.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada4.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <br />
-      </div>
-      <div class ="row">
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada5.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada6.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada7.jpg" class ="img-book"/>
-          </center>
+        <?php
+          //Importar todos los libros
+          include('../models/Book.php');
+          $book = new Book($dbM, $dbP);
+
+          $books = $book->getAll();
+
+          //Desplegar la info
+
+        ?>
+        <div class="col-lg-12">
+            <h2 class="text-center text-primary">Book list</h2>
+            <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
+
+            </div>
+            <?php
+            if( ! empty( $books ) )
+            {
+            ?>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Genre</th>
+                    <th>Pgs</th>
+                    <th>Url</th>
+                </tr>
+                <?php foreach( $books as $libro )
+                {
+                ?>
+                    <tr>
+                        <td><?php echo $libro->id ?></td>
+                        <td><?php echo $libro->titulo ?></td>
+                        <td><?php echo $libro->descripcion ?></td>
+                        <td><?php echo $libro->genero ?></td>
+                        <td><?php echo $libro->paginas ?></td>
+                        <td><a href="<?php echo $libro->url ?>">Link</a></td>
+                        <td>
+                          <a href="<?php echo $libro->url ?>">Add</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+            <?php
+            }
+            else
+            {
+            ?>
+            <div class="alert alert-danger" style="margin-top: 100px">Any user has been registered</div>
+            <?php
+            }
+            ?>
         </div>
       </div>
     </div>
-
-    <ul class="libros">
-    <% for(var i=0; i<libros.length; i++) {%>
-      <li class="libro">
-        <span><%= libros[i].title %></span>
-        <span><%= libros[i].nomautor %></span>
-      </li>
-    <% } %>
-    </ul>
     <!--End of content-->
 
     <!--Footer-->

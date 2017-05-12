@@ -51,7 +51,7 @@ class Book implements IUser {
     //insertamos libros en una tabla con postgreSql
     public function save() {
         try{
-
+          //INSERT INTO libro (titulo,descripcion, paginas, genero, url) values ('Prueba','Prueba D',123,'Novela','books/prueba.pdf')
           //insercion en libro
             $query = $this->con->prepare('INSERT INTO libro (titulo,descripcion, paginas, genero, url) values (?,?,?,?,?)');
             $query->bindParam(1, $this->titulo, PDO::PARAM_STR);
@@ -138,7 +138,8 @@ class Book implements IUser {
         }
     }
 
-      public function getAll(){
+
+    public function getAll(){
         try{
                 $query = $this->con->prepare('SELECT * FROM libro');
                 $query->execute();

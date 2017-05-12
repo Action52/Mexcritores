@@ -104,9 +104,7 @@ if(!isset($_SESSION['login_user'])){
               <br /><input type="file" name="book" value="" id="book" class ="txt-field txt-field-mex col-xs-4 register">
               <br />
               <br />
-              <label for="cover">Cover (Recommended 200*400)</label>
-              <br /><input type="file" name="cover" value="" id="cover" class ="txt-field txt-field-mex col-xs-4 register">
-              <br />
+              <input type="hidden" name="user" value="<?php echo $_SESSION['login_user']?>" id="user" class ="txt-field txt-field-mex col-xs-4 register">
               <br />
               <input type="submit" name="submit" value="Add book" id="submit" placeholder="submit" class ="btn btn-primary btn-sm btn-mex">
             </form>

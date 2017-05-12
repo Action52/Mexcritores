@@ -144,7 +144,7 @@ if(isset($_SESSION['login_user'])){
       $dbM = new DatabaseMysql;
       $dbP = new DatabasePsql;
 
-      $dbM->connect();
+
     ?>
   </body>
 </html>
