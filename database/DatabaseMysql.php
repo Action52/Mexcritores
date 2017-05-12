@@ -3,9 +3,9 @@
 class DatabaseMysql extends PDO{
 
 	//dbname
-	private $dbname = "mexcritoresMYSQL";
+	private $dbname = "mexcritoresm";
 	//host
-	private $host 	= "127.0.0.1";
+	private $host 	= "localhost";
 	//user database
 	private $user 	= "root";
 	//password user
