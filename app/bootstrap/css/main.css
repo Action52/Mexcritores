@@ -1,11 +1,7 @@
 .main-page{
   background-image: url(../../img/fontNuevo.jpg);
-  font-family: "Courier New", Courier, monospace;
 }
 
-body{
-  font-family: "Courier New", Courier, monospace;
-}
 
 .header-mex{
   background-color: #ffb014;

@@ -5,11 +5,11 @@ class DatabasePsql extends PDO{
 	//dbname
 	private $dbname = "mexcritoresp";
 	//host
-	private $host 	= "localhost";
+	private $host 	= "127.0.0.1";
 	//user database
-	private $user 	= "postgres";
+	private $user 	= "leonvillapun";
 	//password user
-	private $pass 	= '';
+	private $pass 	= 'schwarz';
 	//port
 	private $port 	= 5432;
 
