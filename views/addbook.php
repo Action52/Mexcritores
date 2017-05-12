@@ -28,9 +28,9 @@ include('session.php');
  <option value="">--- Select ---</option>
                     <?php
 
-                    $conex = "host=localhost port=5432 dbname=mexcritoresp user=postgres password=";
+                    $conex = "host=localhost port=5432 dbname=mexcritoresp user=leonvillapun password=schwarz";
                     $cnx = pg_connect($conex) or die ("<h1>Error de conexion.</h1> ". pg_last_error());
-                
+
 
  $list = pg_query($cnx, "select * from escritor");
 
@@ -38,17 +38,17 @@ include('session.php');
  ?>
  <option value=<?php echo $row_list['id']; ?>>
  <?php echo $row_list["nombre"]; ?>
-  <?php echo " " ?> 
- <?php echo $row_list["apellidos"]; ?> 
+  <?php echo " " ?>
+ <?php echo $row_list["apellidos"]; ?>
  </option>
  <?php
  }
  ?>
  </select>
- 
 
 
-                    
+
+
                 </div>
                 <div class="form-group">
                     <label for="descripcion">descripcion</label>
