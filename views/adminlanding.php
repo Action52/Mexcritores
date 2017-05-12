@@ -66,7 +66,7 @@ if(!isset($_SESSION['login_user'])){
           </div>
           <div class ="row">
 
-<<<<<<< HEAD
+
           </div>
           </center>
         </div>
@@ -80,13 +80,8 @@ if(!isset($_SESSION['login_user'])){
         <center>
           <h2>Administrate Mexcritores</h2>
         </center>
-=======
-                    <a href = "listwriters.php">Escritores</a>
 
-                    <a href = "listreaders.php">Lectores</a>
->>>>>>> b5e310130627c3defbddb0eeac3f41e3e30a558b
-
-        <div class ="col-md-6">
+        <div class ="col-md-4">
           <center>
             <h3>
               <a href="listwriters.php"><img src ="img/writer.png" /></a>
@@ -97,7 +92,18 @@ if(!isset($_SESSION['login_user'])){
           <br />
           </center>
         </div>
-        <div class ="col-md-6">
+        <div class ="col-md-4">
+          <center>
+            <h3>
+              <a href="listbooks.php"><img src ="img/book.jpg" width="400" height ="300"/></a>
+              <br />
+              Edit books
+            </h3>
+
+          <br />
+          </center>
+        </div>
+        <div class ="col-md-4">
           <center>
             <h3>
               <br />

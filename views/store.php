@@ -120,7 +120,6 @@ if(!isset($_SESSION['login_user'])){
                         <td><?php echo $libro->paginas ?></td>
                         <td><a href="<?php echo $libro->url ?>">Link</a></td>
                         <td>
-                          <a href="<?php echo $libro->url ?>">Add</a>
                         </td>
                     </tr>
                 <?php

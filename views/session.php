@@ -1,7 +1,7 @@
 <?php
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysqli_connect("localhost", "root", "","mexcritoresm");
-//$connection = mysqli_connect("127.0.0.1", "root", "","mexcritoresMYSQL");
+//$connection = mysqli_connect("localhost", "root", "","mexcritoresm");
+$connection = mysqli_connect("127.0.0.1", "root", "","mexcritoresMYSQL");
 
 // Selecting Database
 session_start();// Starting Session

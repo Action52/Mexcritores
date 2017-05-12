@@ -56,7 +56,7 @@ if(!isset($_SESSION['login_user'])){
         <div class ="col-md-6" align ="center">
           <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
-          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
+          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a>
           </h5>
 
         </div>
@@ -78,7 +78,7 @@ if(!isset($_SESSION['login_user'])){
     <div class ="container book-section">
       <div class ="row">
         <center>
-          <h2>Store</h2>
+          <h2>Read</h2>
         </center>
         <!--Aqui van los libros-->
         <?php
@@ -86,7 +86,7 @@ if(!isset($_SESSION['login_user'])){
           include('../models/Book.php');
           $book = new Book($dbM, $dbP);
 
-          $books = $book->getMyBooks($_SESSION['login_user']);
+          $books = $book->getAll();
 
           //Desplegar la info
 
@@ -104,6 +104,9 @@ if(!isset($_SESSION['login_user'])){
                 <tr>
                     <th>Id</th>
                     <th>Title</th>
+                    <th>Description</th>
+                    <th>Genre</th>
+                    <th>Pgs</th>
                     <th>Url</th>
                 </tr>
                 <?php foreach( $books as $libro )
@@ -112,11 +115,11 @@ if(!isset($_SESSION['login_user'])){
                     <tr>
                         <td><?php echo $libro->id ?></td>
                         <td><?php echo $libro->titulo ?></td>
+                        <td><?php echo $libro->descripcion ?></td>
+                        <td><?php echo $libro->genero ?></td>
+                        <td><?php echo $libro->paginas ?></td>
                         <td><a href="<?php echo $libro->url ?>">Link</a></td>
                         <td>
-                            
-                            <!--<a class="btn btn-info" href="<?php //echo Writer::baseurl() ?>view/editwriter.php?user=<?php echo $user->id ?>">Edit</a>
-                            <a class="btn btn-info" href="<?php //echo Writer::baseurl() ?>view/deletewriter.php?user=<?php echo $user->username ?>">Delete</a>-->
                         </td>
                     </tr>
                 <?php
