@@ -51,14 +51,14 @@ class Book implements IUser {
     //insertamos libros en una tabla con postgreSql
     public function save() {
         try{
-
+          //INSERT INTO libro (titulo,descripcion, paginas, genero, url) values ('Prueba','Prueba D',123,'Novela','books/prueba.pdf')
           //insercion en libro
             $query = $this->con->prepare('INSERT INTO libro (titulo,descripcion, paginas, genero, url) values (?,?,?,?,?)');
             $query->bindParam(1, $this->titulo, PDO::PARAM_STR);
             $query->bindParam(2, $this->descripcion, PDO::PARAM_STR);
             $query->bindParam(3, $this->paginas, PDO::PARAM_STR);
             $query->bindParam(4, $this->genero, PDO::PARAM_STR);
-            $query->bindParam(4, $this->url, PDO::PARAM_STR);
+            $query->bindParam(5, $this->url, PDO::PARAM_STR);
             $query->execute();
 
             $latestBook = $this->con->lastInsertId();
@@ -131,6 +131,18 @@ class Book implements IUser {
         }
     }
 
+    public function getAll(){
+        try{
+                $query = $this->con->prepare('SELECT * FROM libro');
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+
     public function delete(){
         try{
             $query = $this->con->prepare('DELETE FROM libro WHERE id = ?');
@@ -156,6 +168,26 @@ class Book implements IUser {
             $query->execute();
             $this->con->close();
             return true;
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+
+    public function getMyBooks($u_name){
+        try{
+                $query1 = $this->con->prepare("SELECT id FROM lector WHERE username ='$u_name'");
+                $query1->execute();
+                $results = $query1->fetch();
+                $myid = $results['id'];
+
+                $query = $this->con->prepare("SELECT libro.id, libro.titulo, libro.url
+                  FROM libro, lector_libro, lector
+                  WHERE libro.id = lector_libro.ref_libro AND lector.id = lector_libro.id_lector AND lector_libro.id_lector = '$myid'");
+                $query->execute();
+
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
         }
         catch(PDOException $e){
             echo  $e->getMessage();

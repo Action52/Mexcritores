@@ -56,7 +56,7 @@ if(!isset($_SESSION['login_user'])){
         <div class ="col-md-6" align ="center">
           <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
-          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.ejs">Store</a>
+          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
           </h5>
 
         </div>
@@ -78,48 +78,60 @@ if(!isset($_SESSION['login_user'])){
     <div class ="container book-section">
       <div class ="row">
         <center>
-          <h2>My books</h2>
+          <h2>Store</h2>
         </center>
         <!--Aqui van los libros-->
-        <div class ="book-section col-md-3">
-          <center>
-            <a href="displaybook.php"><img src ="img/portada.jpg" class ="img-book"/></a>
-          </center>
-          <br />
-          HOLA
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada2.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada3.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada4.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <br />
-      </div>
-      <div class ="row">
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada5.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada6.jpg" class ="img-book"/>
-          </center>
-        </div>
-        <div class ="book-section col-md-3">
-          <center>
-            <img src ="img/portada7.jpg" class ="img-book"/>
-          </center>
+        <?php
+          //Importar todos los libros
+          include('../models/Book.php');
+          $book = new Book($dbM, $dbP);
+
+          $books = $book->getMyBooks($_SESSION['login_user']);
+
+          //Desplegar la info
+
+        ?>
+        <div class="col-lg-12">
+            <h2 class="text-center text-primary">Book list</h2>
+            <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
+
+            </div>
+            <?php
+            if( ! empty( $books ) )
+            {
+            ?>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Url</th>
+                </tr>
+                <?php foreach( $books as $libro )
+                {
+                ?>
+                    <tr>
+                        <td><?php echo $libro->id ?></td>
+                        <td><?php echo $libro->titulo ?></td>
+                        <td><a href="<?php echo $libro->url ?>">Link</a></td>
+                        <td>
+                            
+                            <!--<a class="btn btn-info" href="<?php //echo Writer::baseurl() ?>view/editwriter.php?user=<?php echo $user->id ?>">Edit</a>
+                            <a class="btn btn-info" href="<?php //echo Writer::baseurl() ?>view/deletewriter.php?user=<?php echo $user->username ?>">Delete</a>-->
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+            <?php
+            }
+            else
+            {
+            ?>
+            <div class="alert alert-danger" style="margin-top: 100px">Any user has been registered</div>
+            <?php
+            }
+            ?>
         </div>
       </div>
     </div>
