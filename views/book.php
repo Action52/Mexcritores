@@ -56,7 +56,7 @@ if(!isset($_SESSION['login_user'])){
         <div class ="col-md-6" align ="center">
           <h5 class ="txt-field-mex">Welcome to Mexcritores, <?php echo $userInfo['username']; ?> . You are a member since: <?php echo $userInfo['fecha_creacion'] ?>
           <br />
-          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.php">Store</a>
+          <a href ="delete.php">Delete my account</a> | <a href="update.php">Update my info</a> | <a href="store.ejs">Store</a>
           </h5>
 
         </div>

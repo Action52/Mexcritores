@@ -124,6 +124,15 @@ if(!isset($_SESSION['login_user'])){
         </div>
       </div>
     </div>
+
+    <ul class="libros">
+    <% for(var i=0; i<libros.length; i++) {%>
+      <li class="libro">
+        <span><%= libros[i].title %></span>
+        <span><%= libros[i].nomautor %></span>
+      </li>
+    <% } %>
+    </ul>
     <!--End of content-->
 
     <!--Footer-->

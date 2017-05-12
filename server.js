@@ -1,7 +1,28 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const bodyParser = require('body-parser')
+const MongoClient = require('mongodb').MongoClient
+const app = express()
+var phpnode = require('./index.js')({bin:"c:\\php\\php.exe"});
+app.use(bodyParser.urlencoded({extended:true}))
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(bodyParser.json())
+app.engine('php', phpnode)
+
+app.get('/store', (req,res) => {
+  db.collection('libros').find().toArray((err,result) => {
+    //renders index.ejs
+    res.render('store', {libros:result})
+  })
+})
 
 
-app.listen(8000, function() {
-  console.log('listening on 3000')
+var db
+
+MongoClient.connect('mongodb://admin:mexcritores@ds115411.mlab.com:15411/mexcritores', (err, database) => {
+  if (err) return console.log(err)
+  db = database
+  app.listen(8000, () => {
+    console.log('listening on 8000')
+  })
 })

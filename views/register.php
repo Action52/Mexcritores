@@ -99,7 +99,7 @@
       $mail->Username = "leonvillapun@gmail.com";
 
       //Password to use for SMTP authentication
-      $mail->Password = "vhxfupwbbofifyns";
+      $mail->Password = "vhxfupwbbofifyns"; //Esta es la contraseña de aplicacion
 
       //Set who the message is to be sent from
       $mail->setFrom('leonvillapun@gmail.com', 'Mexcritores');
